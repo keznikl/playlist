@@ -10,7 +10,7 @@ def template_path(name):
 class MainPage(webapp.RequestHandler):
   def get(self):
     greetings_query = Greeting.all().order('-date')
-    greetings = greetings_query.fetch(10)
+    greetings = greetings_query.fetch(10)	
 
     if users.get_current_user():
       url = users.create_logout_url(self.request.uri)

@@ -3,21 +3,42 @@
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    {% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.author.nickname }}</b> wrote:
-      {% else %}
-       An anonymous person wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content|escape }}</blockquote>
-    {% endfor %}
+    <div id="container">      
+      <div id="content">
+        <div id="header">
+          <span class="color">Playlist</span>Spot
+        </div>
+        
+        <div id="form">
+          <form action="/sign" method="post" name="postForm" >
+            <div><textarea name="content" rows="3" ></textarea></div>
+            <div><a href="javascript:document.postForm.submit();" class="button" ><span>Send</span></a></div>
+          </form>          
+        </div>
+          
+        <div id="messages">
+          {% for greeting in greetings %}
+            <div class="post">
+              <div>
+              {% if greeting.author %}
+                <span class="nick">{{ greeting.author.nickname }}</span>
+                <span class="name">{{ greeting.author.fullname }}</span>
+              {% else %}
+                <span class="nick">Anonymous</span>
+              {% endif %}
+              </div>
+              <div class="msg">{{ greeting.content|escape }}</div>
+              <div class="date">{{ greeting.date|timesince }} ago</div>
+            </div>
+          {% endfor %}
+        </div>
+          
+        <div id="footer">
+          <a href="{{ url }}">{{ url_linktext }}</a>
+        </div>
+      </div>
+      <div id="background"></div>
 
-    <form action="/sign" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
-
-    <a href="{{ url }}">{{ url_linktext }}</a>
-
+    </div>    
   </body>
 </html>
