@@ -7,6 +7,7 @@
       <div id="content">
         <div id="header">
           <span class="color">Playlist</span>Spot
+         <div id="login">{% if user %}{{ user.nickname }}{% endif %} <a href="{{ url }}">{{ url_linktext }}</a></div>
         </div>
         
         <div id="form">
@@ -27,14 +28,14 @@
                 <span class="nick">Anonymous</span>
               {% endif %}
               </div>
-              <div class="msg">{{ greeting.content|escape }}</div>
+              <div class="msg">{{ greeting.content }}</div>
               <div class="date">{{ greeting.date|timesince }} ago</div>
             </div>
           {% endfor %}
         </div>
           
         <div id="footer">
-          <a href="{{ url }}">{{ url_linktext }}</a>
+          Copyright
         </div>
       </div>
       <div id="background"></div>
